@@ -4,12 +4,23 @@ import (
 	"time"
 )
 
+const (
+	ActivityTypePlaying int = iota
+	ActivityTypeStreaming
+	ActivityTypeListening
+	ActivityTypeWatching
+	ActivityTypeCustom
+	ActivityTypeCompeting
+)
+
 // Activity holds the data for discord rich presence
 type Activity struct {
 	// What the player is currently doing
 	Details string
 	// The user's current party status
 	State string
+	// What type of activity the player is currently doing (i.e., playing, watching, etc.)
+	Type int
 	// The id for a large asset of the activity, usually a snowflake
 	LargeImage string
 	// Text displayed when hovering over the large image of the activity
@@ -68,6 +79,7 @@ func mapActivity(activity *Activity) *PayloadActivity {
 	final := &PayloadActivity{
 		Details: activity.Details,
 		State:   activity.State,
+		Type:    activity.Type,
 		Assets: PayloadAssets{
 			LargeImage: activity.LargeImage,
 			LargeText:  activity.LargeText,

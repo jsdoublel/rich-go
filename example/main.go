@@ -16,6 +16,7 @@ func main() {
 	now := time.Now()
 	err = client.SetActivity(client.Activity{
 		State:      "Heyy!!!",
+		Type:       client.ActivityTypeListening,
 		Details:    "I'm running on rich-go :)",
 		LargeImage: "largeimageid",
 		LargeText:  "This is the large image :D",
@@ -30,7 +31,7 @@ func main() {
 			Start: &now,
 		},
 		Buttons: []*client.Button{
-			&client.Button{
+			{
 				Label: "GitHub",
 				Url:   "https://github.com/hugolgst/rich-go",
 			},
