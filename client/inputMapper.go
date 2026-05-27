@@ -13,6 +13,12 @@ const (
 	ActivityTypeCompeting
 )
 
+const (
+	StatusDisplayTypeName int = iota
+	StatusDisplayTypeState
+	StatusDisplayTypeDetails
+)
+
 // Activity holds the data for discord rich presence
 type Activity struct {
 	// What the player is currently doing
@@ -21,6 +27,8 @@ type Activity struct {
 	State string
 	// What type of activity the player is currently doing (i.e., playing, watching, etc.)
 	Type int
+	// Controls which field of the activity is displayed in the member list (name, state, details)
+	StatusDisplayType int
 	// The id for a large asset of the activity, usually a snowflake
 	LargeImage string
 	// Text displayed when hovering over the large image of the activity
@@ -77,9 +85,10 @@ type Secrets struct {
 
 func mapActivity(activity *Activity) *PayloadActivity {
 	final := &PayloadActivity{
-		Details: activity.Details,
-		State:   activity.State,
-		Type:    activity.Type,
+		Details:           activity.Details,
+		State:             activity.State,
+		Type:              activity.Type,
+		StatusDisplayType: activity.StatusDisplayType,
 		Assets: PayloadAssets{
 			LargeImage: activity.LargeImage,
 			LargeText:  activity.LargeText,

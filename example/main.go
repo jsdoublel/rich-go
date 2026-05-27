@@ -15,13 +15,14 @@ func main() {
 
 	now := time.Now()
 	err = client.SetActivity(client.Activity{
-		State:      "Heyy!!!",
-		Type:       client.ActivityTypeListening,
-		Details:    "I'm running on rich-go :)",
-		LargeImage: "largeimageid",
-		LargeText:  "This is the large image :D",
-		SmallImage: "smallimageid",
-		SmallText:  "And this is the small image",
+		State:             "Heyy!!!",
+		Type:              client.ActivityTypeWatching,
+		StatusDisplayType: client.StatusDisplayTypeDetails,
+		Details:           "I'm running on rich-go :)",
+		LargeImage:        "largeimageid",
+		LargeText:         "This is the large image :D",
+		SmallImage:        "smallimageid",
+		SmallText:         "And this is the small image",
 		Party: &client.Party{
 			ID:         "-1",
 			Players:    15,
